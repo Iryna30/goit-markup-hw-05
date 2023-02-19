@@ -108,6 +108,9 @@ header {
   padding-top: 24px;
   padding-bottom: 24px;
   text-decoration: none;
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .site-nav {
@@ -153,6 +156,20 @@ header {
   color: var(--pressed-state-color);
 }
 
+.link.current {
+  position: relative;
+}
+.link.current::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--pressed-state-color);
+  border-radius: 2px;
+}
 /* ------------------Hero-------------------- */
 
 .hero {
@@ -201,6 +218,9 @@ header {
   line-height: 1.5;
   align-items: center;
   letter-spacing: 0.04em;
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-button:hover,
@@ -256,7 +276,6 @@ header {
   justify-content: center;
   align-items: center;
 }
-
 
 /* What are we doing */
 
@@ -363,6 +382,10 @@ header {
   border-radius: 50%;
   background-color: var(--primary-brand-color);
   color: var(--light-accent-color);
+
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .team-social-icon {
@@ -404,6 +427,10 @@ header {
   border: 1px solid;
   border-color: var(--customers-icon-color);
   border-radius: 4px;
+
+  transition-property: border-color, color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customers-icon {
@@ -473,6 +500,10 @@ header {
   border-radius: 50%;
   background-color: var(--body-text-color);
   color: var(--light-accent-color);
+
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-social-link:is(:hover, :focus) {
@@ -509,6 +540,10 @@ header {
   text-align: center;
   letter-spacing: 0.04em;
   cursor: pointer;
+
+  transition-property: background-color, color, box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .filter-btn:hover,
 .filter-btn:focus {
@@ -531,16 +566,56 @@ header {
 }
 
 .exampl-item-link {
+ 
   display: block;
   text-decoration: none;
   color: inherit;
-  
+  transition-property: box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.exampl-item-link:hover, 
+.exampl-item-link:hover,
 .exampl-item-link:focus {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.exampl-photo-overlay {
+  position: relative;
+  display: block;
+}
+
+.exampl-photo-overlay::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-brand-color);
+  opacity: 0;
+  
+
+}
+
+.overlay-text {
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--light-accent-color);
+  opacity: 0;
+}
+
+.exampl-item-link:hover .exampl-photo-overlay::before {
+  opacity: 1;
+}
+
+.exampl-item-link:hover .overlay-text {
+  opacity: 1;
 }
 
 .exampl-list-container {
