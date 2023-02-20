@@ -227,7 +227,62 @@ header {
 .hero-button:focus {
   background-color: var(--pressed-state-color);
 }
+/*----------------- Modal ----------------------*/
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
 
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: 550ms cubic-bezier(.17,.67,.83,.67);
+
+  width: 408px;
+  height: 576px;
+  padding: 24px;
+  background-color: #fcfcfc;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.backdrop.is-hidden .modal{
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  background-color: var(--pressed-state-color);
+  fill: #fff;
+}
 /* -------------Features section-------------- */
 
 .visually-hidden {
@@ -566,7 +621,6 @@ header {
 }
 
 .exampl-item-link {
- 
   display: block;
   text-decoration: none;
   color: inherit;
@@ -580,23 +634,24 @@ header {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
-/* -----Animation--------- */
-.exampl-photo-overlay {
+/* -----Overlay--------- */
+
+.overlay {
   position: relative;
-  display: block;
+  overflow: hidden;
 }
 
-.exampl-photo-overlay::before {
-  content: '';
-  display: inline-block;
+.exampl-photo-overlay {
   position: absolute;
+  top: 0;
+  left: 0;
 
   width: 100%;
   height: 100%;
   background-color: var(--primary-brand-color);
-  opacity: 0;
-  
 
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .overlay-text {
@@ -607,15 +662,11 @@ header {
   top: 0;
   left: 0;
   color: var(--light-accent-color);
-  opacity: 0;
+  /* opacity: 0; */
 }
 
-.exampl-item-link:hover .exampl-photo-overlay::before {
-  opacity: 1;
-}
-
-.exampl-item-link:hover .overlay-text {
-  opacity: 1;
+.exampl-item-link:hover .exampl-photo-overlay {
+  transform: translateY(0);
 }
 
 .exampl-list-container {
@@ -636,3 +687,5 @@ header {
 }
 .exampl-descr {
 }
+
+
